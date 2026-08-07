@@ -1,4 +1,4 @@
-export function Login(){
+export function Login() {
 
     return (
         <div>
