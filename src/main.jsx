@@ -7,5 +7,6 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Login/>
     <GlobalStyles></GlobalStyles>
+    
   </StrictMode>,
 )
