@@ -1,32 +1,54 @@
-import { Container, LeftContainer, RightContainer, Title, Form, InputContainer, Link, Button } from "./styles"
+import { useForm } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
+import { Container, LeftContainer, RightContainer, Title, Form, InputContainer } from "./styles"
+import { Button } from "../../components/Button/index.jsx"
 import Logo from "../../assets/Logo.svg"
-
 
 export function Login() {
 
+    const schema = yup
+        .object({
+            email: yup.string().email().required(),
+            password: yup.string().min(6).required(),
+        })
+        .required()
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(schema),
+    })
+    const onSubmit = (data) => console.log(data)
+    
     return (
         <Container>
             <LeftContainer>
                 <img src={Logo} alt="logo devburguer" />
+
+
             </LeftContainer>
 
             <RightContainer>
                 <Title>
                     Olá, seja bem vindo ao <span>Dev Burguer!</span>
+                    <br />
                     Acesse com seu <span>Login e senha</span>.
                 </Title>
-                <Form>
+                <Form onSubmit={handleSubmit(onSubmit)}>
                     <InputContainer>
                         <label htmlFor="">Email</label>
-                        <input type="email" />
+                        <input type="email" {...register("email")} />
                     </InputContainer>
                     <InputContainer>
                         <label htmlFor="">Senha</label>
-                        <input type="password" />
+                        <input type="password" {...register("password")} />
                     </InputContainer>
                     <Button type="submit">Entrar</Button>
                 </Form>
-                <Link>Não possui conta? Clique aqui.</Link>
+                <p>Não possui conta? <a href="#">Clique aqui.</a></p>
             </RightContainer>
 
         </Container>
