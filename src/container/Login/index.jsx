@@ -5,8 +5,10 @@ import { Container, LeftContainer, RightContainer, Title, Form, InputContainer }
 import { Button } from "../../components/Button/index.jsx"
 import Logo from "../../assets/Logo.svg"
 import { api } from "../../services/api.js"
+import { toast } from 'react-toastify';
 
 export function Login() {
+    // const notify = () => toast.("Wow so easy!");
 
     const schema = yup
         .object({
@@ -25,18 +27,26 @@ export function Login() {
 
     console.log(errors)
     const onSubmit = async (data) => {
-        const response = await api.post("/session",{
-            email: data.email,
-            password: data.password
-        })
+        const response = await toast.promise(
+             api.post("/sessions", {
+                email: data.email,
+                password: data.password
+            })
+            , {
+                pending: 'Verificando seus dados',
+                success: 'Login bem sucedido 👌',
+                error: 'Email ou senha incorretos 🤯'
+            })
+
         console.log(response)
     }
-    
+
     return (
         <Container>
             <LeftContainer>
                 <img src={Logo} alt="logo devburguer" />
-
+                {/* <button onClick={notify}>Notify!</button> */}
+                
 
             </LeftContainer>
 
