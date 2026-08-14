@@ -1,13 +1,14 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import {Login} from './container/Login/index.jsx'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './routes/index.jsx'
 import GlobalStyles from './styles/GlobalStyles.js'
 import { ToastContainer } from 'react-toastify'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Login/>
+    <RouterProvider router={router}/>
     <GlobalStyles></GlobalStyles>
-    <ToastContainer/>
+    <ToastContainer autoClose={3000} theme='colored'/>
   </StrictMode>,
 )
