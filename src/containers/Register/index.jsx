@@ -1,21 +1,22 @@
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import { Container, LeftContainer, RightContainer, Title, Form, InputContainer } from "./styles.js"
+import { Container, LeftContainer, RightContainer, Title, Form, InputContainer,Link } from "./styles.js"
 import { Button } from "../../components/Button/index.jsx"
 import Logo from "../../assets/Logo.svg"
 import { api } from "../../services/api.js"
 import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom"
 
 export function Register() {
     // const notify = () => toast.("Wow so easy!");
-
+    const navigate = useNavigate()
     const schema = yup
         .object({
             name: yup.string().required('Nome é obrigatório'),
             email: yup.string().email('Digite um e-mail válido').required('O e-mail é obrigatório'),
             password: yup.string().min(6, 'A senha deve ter pelo 6 caracteres').required('Digite uma senha'),
-             confirmPassword: yup.string().oneOf([yup.ref('password')], 'As senhas devem ser iguais').required('Confirme a senha')
+            confirmPassword: yup.string().oneOf([yup.ref('password')], 'As senhas devem ser iguais').required('Confirme a senha')
         })
         .required()
 
@@ -29,19 +30,33 @@ export function Register() {
 
     console.log(errors)
     const onSubmit = async (data) => {
-        const response = await toast.promise(
-             api.post("/users", {
+
+        try {
+            const {status} = await
+            api.post("/users", {
                 name: data.name,
                 email: data.email,
                 password: data.password
+            },{
+                validateStatus: () => true
             })
-            , {
-                pending: 'Verificando seus dados',
-                success: 'Cadastro efetuado com sucesso👌',
-                error: 'Algo deu errado! Tente novamente 🤯'
-            })
+            if (status === 200 || status === 201) {
+                setTimeout(() => {
+                    navigate('/login')
+                }, 2000);
+                toast.success('Conta criada com sucesso')
+            }else if(status === 400){
+                toast.error('Email já cadastrado!')
+            }else{
+                throw new Error()
+            }
 
-        console.log(response)
+        console.log(status)
+        } catch (error) {
+            console.log(error)
+            toast.error('Falha no sistema')
+        }
+        
     }
 
     return (
@@ -49,7 +64,7 @@ export function Register() {
             <LeftContainer>
                 <img src={Logo} alt="logo devburguer" />
                 {/* <button onClick={notify}>Notify!</button> */}
-                
+
 
             </LeftContainer>
 
@@ -80,7 +95,7 @@ export function Register() {
                     </InputContainer>
                     <Button type="submit">Confirmar cadastro</Button>
                 </Form>
-                <p>Ja possui conta? <a href="#">Clique aqui.</a></p>
+                <p>Ja possui conta? <Link to="/login">Clique aqui.</Link></p>
             </RightContainer>
 
         </Container>
