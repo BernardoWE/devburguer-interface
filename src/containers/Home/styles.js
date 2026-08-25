@@ -8,13 +8,14 @@ export const Banner = styled.div`
     background-size: cover;
     background-position: center;
     height: 480px;
+    position: relative;
     h1{
         color: #f4f4f4;
         font-family: 'Road Rage', sans-serif;
         font-size: 80px;
         position: absolute;
         right: 20%;
-        top: 10%;
+        top: 20%;
         
     }
 `

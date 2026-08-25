@@ -1,12 +1,18 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+    width: 90vw;
+    margin: 0 auto;
+    /* display: flex; */
     .carousel-item{
         padding-right: 40px;
         
     }
-    padding-left: 40px;
+    /* .react-multi-carousel-track {
+        gap: 50px;
+    } */
 `
+
 export const Title = styled.h2`
     font-size: 32px;
     font-weight: 800;
@@ -38,10 +44,11 @@ export const ContainerItems = styled.div`
     width: 100%;
     height: 250px;
     border-radius: 10px;
+    cursor: grab;
     p{
         color: #fff;
         background-color: rgba(0,0,0,0.5);
-        padding: 10px 30px;
+        padding: 0px 15px;
         border-radius: 30px;
         font-size: 22.5px;
         font-weight: bold;

@@ -38,6 +38,7 @@ export function CategoriesCarousel(){
         },
 
     }
+
     // console.log(Carousel)
     return (
         <Container>
@@ -47,7 +48,6 @@ export function CategoriesCarousel(){
                 infinite={true}
                 partialVisible={false}
                 itemClass='carousel-item'
-                
             >
                 {categories.map((category) => (
 

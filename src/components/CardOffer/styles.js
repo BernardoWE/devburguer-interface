@@ -7,7 +7,7 @@ export const Container = styled.div`
     padding: 20px;
     border-radius: 10px;
     background-color: #fff;
-    gap: 20px;
+    gap: 40px;
     position: relative;
     cursor: grab;
     box-shadow: rgba(0,0,0,0.35) 0px 5px 30px;
@@ -15,6 +15,7 @@ export const Container = styled.div`
         width: 100%;
         height: 80px;
         display: flex;
+        gap: 10px;
         flex-direction: column;
         justify-content: space-between;
         p{

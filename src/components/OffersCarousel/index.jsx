@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react'
 import {api} from '../../services/api.js'
-
+import { formatPrice } from "../../utils/formatPrice"
 // import Carousel from 'react-multi-carousel'
 import * as MultiCarouselModule from 'react-multi-carousel'; import 'react-multi-carousel/lib/styles.css';
 import { Container, Title } from './styles.js'
@@ -17,7 +17,10 @@ export function OffersCarousel(){
             const {data} = await api.get('/products')
             setOffers(data)
 
-            const onlyOffers = data.filter(product => product.offer)
+            const onlyOffers = data.filter(product => product.offer).map(product => ({
+                formatedPrice: formatPrice(product.price),
+                ...product
+            }))
             console.log(onlyOffers)
             setOffers(onlyOffers)
            
