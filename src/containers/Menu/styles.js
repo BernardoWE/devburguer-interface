@@ -34,6 +34,7 @@ export const Container = styled.section`
         rgba(255, 255, 255, 0.5)
     ), url('${Background}'); */
     min-height: 100vh;
+    padding-bottom: 50px;
     background: linear-gradient(
             rgba(255, 255, 255, 0.5),
             rgba(255, 255, 255, 0.5)
@@ -66,4 +67,20 @@ export const ProductsContainer = styled.div`
     justify-content: center;
     max-width: 1280px;
     margin: 50px auto 0;
+`
+export const BackButton = styled(Link)`
+        color: #5C2669;
+        /* background-color: blue; */
+        /* padding: 0px 0px 50px ; */
+        border-radius: 30px;
+        font-size: 18px;
+        font-weight: 600;
+        margin-top: 50px;
+        text-decoration: none;
+        width: fit-content;
+        display: block;
+        margin: 0 auto;
+/* display: flex; */
+/* align-items: center;
+justify-content: center; */
 `

@@ -1,25 +1,35 @@
 import { useEffect, useState } from "react";
-import { Container, Banner, ProductsContainer, CategoryMenu, CategoryButton } from "./styles";
+import { Container, Banner, ProductsContainer, CategoryMenu, CategoryButton, BackButton } from "./styles";
 import { api } from "../../services/api.js"
 import { formatPrice } from "../../utils/formatPrice.js";
 import { CardOffer } from "../../components/CardOffer/index.jsx";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export function Menu() {
 
     const [categories, setCategories] = useState([])
     const [products, setProducts] = useState([])
-    const [activeCategory, setActiveCategory] = useState(0)
     const [filteredProducts, setFilteredProducts] = useState([])
     const navigate = useNavigate()
-
+    const { search} = useLocation()
+    
+    const queryParams = new URLSearchParams(search)
+    
+    
+    const [activeCategory, setActiveCategory] = useState(()=>{
+        const categoryId = +queryParams.get('categoria')
+        if (categoryId) {
+            return categoryId
+        }
+        return 0 
+    })
     useEffect(() => {
         async function loadCategories() {
             const { data } = await api.get('/categories')
             // setCategories(data)
             const newCategories = [{ id: 0, name: "Todas" }, ...data]
             setCategories(newCategories)
-            console.log(newCategories)
+
         }
 
         async function loadProducts() {
@@ -30,7 +40,6 @@ export function Menu() {
                 formatedPrice: formatPrice(product.price),
                 ...product
             }))
-            console.log(newProducts)
             setProducts(newProducts)
 
         }
@@ -39,6 +48,7 @@ export function Menu() {
     }, [])
     useEffect(() => {
         if (activeCategory === 0) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setFilteredProducts(products)
         }else{
             const newFilteredProducts = products.filter(
@@ -87,7 +97,12 @@ export function Menu() {
                     <CardOffer offer={product} key={product.id}></CardOffer>
                 ))}
             </ProductsContainer>
-
+                <BackButton
+                onClick={()=> {
+                            navigate(-1)
+                    }}
+                > {"<"} Voltar</BackButton>
+                
         </Container>
 
     )
