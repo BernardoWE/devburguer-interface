@@ -5,13 +5,11 @@ import { formatPrice } from "../../utils/formatPrice"
 // import Carousel from 'react-multi-carousel'
 import * as MultiCarouselModule from 'react-multi-carousel'; import 'react-multi-carousel/lib/styles.css';
 import { Container, Title } from './styles.js'
-import { CardOffer } from '../CardOffer/index.jsx';
+import { CardProduct } from '../CardProduct/index.jsx';
 const Carousel = MultiCarouselModule.default?.default || MultiCarouselModule.default || MultiCarouselModule.Carousel;
 export function OffersCarousel(){
     
-    const [offers, setOffers] = useState([
-
-    ])
+    const [offers, setOffers] = useState([])
     useEffect(() => {
         async function loadProducts(){
             const {data} = await api.get('/products')
@@ -59,7 +57,7 @@ export function OffersCarousel(){
             >
                 {offers.map((offer) => (
 
-                <CardOffer key={offer.id} offer={offer}></CardOffer>
+                <CardProduct key={offer.id} product={offer}></CardProduct>
 
                 ))}
             </Carousel>

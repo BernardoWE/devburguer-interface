@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Container, Banner, ProductsContainer, CategoryMenu, CategoryButton, BackButton } from "./styles";
 import { api } from "../../services/api.js"
 import { formatPrice } from "../../utils/formatPrice.js";
-import { CardOffer } from "../../components/CardOffer/index.jsx";
+import { CardProduct } from "../../components/CardProduct/index.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export function Menu() {
@@ -94,7 +94,7 @@ export function Menu() {
             </CategoryMenu>
             <ProductsContainer>
                 {filteredProducts.map((product) => (
-                    <CardOffer offer={product} key={product.id}></CardOffer>
+                    <CardProduct product={product} key={product.id}></CardProduct>
                 ))}
             </ProductsContainer>
                 <BackButton
