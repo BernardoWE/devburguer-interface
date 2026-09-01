@@ -37,7 +37,7 @@ export function Header(){
                     </Profile>
                      <LinkContainer>
                     <ShoppingCartIcon color="#fff" size={24}></ShoppingCartIcon>
-                    <HeaderLink>
+                    <HeaderLink to='/carrinho'>
                         Carrinho
                     </HeaderLink>
                 </LinkContainer>
