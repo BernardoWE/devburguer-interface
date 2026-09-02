@@ -19,7 +19,7 @@ export function OffersCarousel(){
                 formatedPrice: formatPrice(product.price),
                 ...product
             }))
-            console.log(onlyOffers)
+           
             setOffers(onlyOffers)
            
         }

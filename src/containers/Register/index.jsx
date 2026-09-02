@@ -51,7 +51,7 @@ export function Register() {
                 throw new Error()
             }
 
-        console.log(status)
+        // console.log(status)
         } catch (error) {
             console.log(error)
             toast.error('Falha no sistema')
