@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 
 export function CartItems() {
     const navigate = useNavigate()
-
+    
     const { cartProducts, increaseProduct, decreaseProduct, deleteProduct } = useCart()
     return (
         <Table.Root>

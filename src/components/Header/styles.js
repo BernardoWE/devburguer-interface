@@ -68,7 +68,20 @@ export const Profile = styled.div`
     }
 `
 export const LinkContainer = styled.div`
-
+    position: relative;
+    p{
+        background-color: #FF8C05;
+        top: -5px;
+        left: 20px;
+        position: absolute;
+        border-radius: 50%;
+        width: 12px;
+        font-size: 8px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 `
 export const Logout = styled.button`
     color: #ff3205;
@@ -76,4 +89,5 @@ export const Logout = styled.button`
     /* text-decoration: none; */
     background: transparent;
     border: none;
+    
 `

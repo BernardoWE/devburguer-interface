@@ -6,7 +6,8 @@ export const CartProvider = ({children}) =>{
     const [cartProducts, setCartProducts] = useState([])
 
     const putProductInCart = (product) => {
-        const cartIndex = cartProducts.findIndex(prd => prd.id === product.id)      
+        const cartIndex = cartProducts.findIndex(prd => prd.id === product.id)
+        console.log(cartIndex)      
         let newProductsInCart = []
 
         if(cartIndex >= 0){
