@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const ButtonGroup = styled.div`
@@ -19,8 +20,10 @@ export const ButtonGroup = styled.div`
 `
 export const ProductImage = styled.img`
 
-    width: 80px;
+    width: 90px;
+    padding: 5px;
     border-radius: 16px;
+    background-color: #F3F3F3;
 `
 export const DeleteProductButton = styled.button`
 
@@ -29,4 +32,10 @@ export const DeleteProductButton = styled.button`
    &:active{
     transform: scale(.96);
    }
+`
+export const BackButton = styled(Link)`
+
+    color: #5C2669;
+    font-size: 15px;
+    
 `

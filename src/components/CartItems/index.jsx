@@ -1,12 +1,14 @@
 import { Table } from '../index'
 import { useCart } from '../../hooks/CartContext'
 import { formatPrice } from '../../utils/formatPrice'
-import { ButtonGroup, DeleteProductButton, ProductImage } from './styles'
+import { BackButton, ButtonGroup, DeleteProductButton, ProductImage } from './styles'
 import trash from '../../assets/trash.svg'
+import { useNavigate } from 'react-router-dom'
 
-export function CartItems(){
+export function CartItems() {
+    const navigate = useNavigate()
 
-    const {cartProducts, increaseProduct, decreaseProduct, deleteProduct} = useCart()
+    const { cartProducts, increaseProduct, decreaseProduct, deleteProduct } = useCart()
     return (
         <Table.Root>
             <Table.Header>
@@ -20,7 +22,7 @@ export function CartItems(){
                 </Table.Tr>
             </Table.Header>
             <Table.Body>
-                {cartProducts?.length ? cartProducts.map( (product) => (
+                {cartProducts?.length ? cartProducts.map((product) => (
                     <Table.Tr key={product.id}>
                         <Table.Td>
                             <ProductImage src={product.url} alt="" />
@@ -33,33 +35,47 @@ export function CartItems(){
                         </Table.Td>
                         <Table.Td>
                             <ButtonGroup>
-                                <button onClick={()=> decreaseProduct(product.id)}>
+                                <button onClick={() => decreaseProduct(product.id)}>
                                     -
                                 </button>
                                 {product.quantity}
-                                <button onClick={()=> increaseProduct(product.id)}>
+                                <button onClick={() => increaseProduct(product.id)}>
                                     +
                                 </button>
                             </ButtonGroup>
                         </Table.Td>
-                        
-                        <Table.Td style={{fontWeight: 'bold',}}>
+
+                        <Table.Td style={{ fontWeight: 'bold', }}>
                             {formatPrice(product.quantity * product.price)}
                         </Table.Td>
                         <Table.Td>
-                            <DeleteProductButton onClick={()=> deleteProduct(product.id)}><img src={trash} alt="" /></DeleteProductButton>
+                            <DeleteProductButton onClick={() => deleteProduct(product.id)}><img src={trash} alt="" /></DeleteProductButton>
                         </Table.Td>
                     </Table.Tr>
                 )
 
-                ): (
-                     <Table.Tr>
+                ) : (
+                    <Table.Tr>
                         <Table.Td>
                             Carrinho Vazio
-                       
+
                         </Table.Td>
                     </Table.Tr>
                 )}
+                <Table.Tr>
+                    <Table.Td></Table.Td>
+                    <Table.Td></Table.Td>
+                    <Table.Td></Table.Td>
+                    
+                    <Table.Td colSpan={3}>
+                        <BackButton
+                            onClick={() => {
+                                navigate(-1)
+                            }}
+                        > {"<"} Adicionar mais produtos</BackButton>
+
+                    </Table.Td>
+                </Table.Tr>
             </Table.Body>
         </Table.Root>
     )
