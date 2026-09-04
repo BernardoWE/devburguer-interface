@@ -6,7 +6,7 @@ import { useCart } from "../../hooks/CartContext";
 export function Header() {
     const { cartProducts } = useCart()
     const cartProductsQuantity = cartProducts.map((prd) => prd.quantity)
-  
+    
     const navigate = useNavigate()
     const { logout, userInfo } = useUser()
     const { pathname } = useResolvedPath()
@@ -39,7 +39,7 @@ export function Header() {
                     </Profile>
                     <LinkContainer>
                         <ShoppingCartIcon color="#fff" size={24}></ShoppingCartIcon>
-                        <p>{cartProductsQuantity.reduce((acc, product) => {
+                        <p>{cartProductsQuantity?.reduce((acc, product) => {
                             
                             return acc + product;
                         }, 0)}</p>

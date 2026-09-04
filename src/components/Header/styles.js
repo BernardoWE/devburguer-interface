@@ -76,7 +76,7 @@ export const LinkContainer = styled.div`
         position: absolute;
         border-radius: 50%;
         width: 12px;
-        font-size: 8px;
+        font-size: 9px;
         color: #fff;
         display: flex;
         align-items: center;
