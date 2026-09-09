@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { toast } from 'react-toastify'
+import { toast} from 'react-toastify'
 import {formatPrice} from '../../utils/formatPrice'
 import {api} from '../../services/api'
 import {useCart} from '../../hooks/CartContext'
@@ -16,34 +16,43 @@ export function CartResume(){
     }, 0)
 
     const submitOrder = async () =>{
-        const products = cartProducts.map((products)=>{
-            return {id: products.id, quantity: products.quantity}
+        const products = cartProducts.map((product)=>{
+            return {id: product.id, quantity: product.quantity, price: product.price}
         })
-         try {
-                    const {status} = await
-                    api.post("/orders", {products},{
-                        validateStatus: () => true
-                    })
-                    if (status === 200 || status === 201) {
+        try {
+           
+            const { data } = await api.post('/create-payment-intent',{products})
+            navigate('/checkout', {
+                state: data
+            })
+        } catch (error) {
+            toast.error('Erro ao realizar o pedido!')
+        }
+        //  try {
+        //             const {status} = await
+        //             api.post("/orders", {products},{
+        //                 validateStatus: () => true
+        //             })
+        //             if (status === 200 || status === 201) {
                         
-                        setTimeout(() => {
-                            navigate('/')
-                            clearCart()
-                        }, 2000);
+        //                 setTimeout(() => {
+        //                     navigate('/')
+        //                     clearCart()
+        //                 }, 2000);
                         
-                        toast.success('Pedido realizado com sucesso!')
+        //                 toast.success('Pedido realizado com sucesso!')
                         
-                    }else if(status === 400){
-                        toast.error('Erro ao realizar o pedido!')
-                    }else{
-                        throw new Error()
-                    }
+        //             }else if(status === 400){
+        //                 toast.error('Erro ao realizar o pedido!')
+        //             }else{
+        //                 throw new Error()
+        //             }
         
-                // console.log(status)
-                } catch (error) {
-                    console.log(error)
-                    toast.error('Falha no sistema')
-                }
+        //         // console.log(status)
+        //         } catch (error) {
+        //             console.log(error)
+        //             toast.error('Falha no sistema')
+        //         }
                 
     }
     
