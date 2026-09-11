@@ -8,7 +8,7 @@ import { Container } from './styles'
 import { useNavigate } from 'react-router-dom'
 export function CartResume(){
     const [deliveryTax] = useState(500)
-    const {cartProducts, clearCart} = useCart()
+    const {cartProducts,} = useCart()
 
     const navigate = useNavigate()
     const finalPrice = cartProducts.reduce((acc, current)=>{
@@ -28,31 +28,7 @@ export function CartResume(){
         } catch (error) {
             toast.error('Erro ao realizar o pedido!')
         }
-        //  try {
-        //             const {status} = await
-        //             api.post("/orders", {products},{
-        //                 validateStatus: () => true
-        //             })
-        //             if (status === 200 || status === 201) {
-                        
-        //                 setTimeout(() => {
-        //                     navigate('/')
-        //                     clearCart()
-        //                 }, 2000);
-                        
-        //                 toast.success('Pedido realizado com sucesso!')
-                        
-        //             }else if(status === 400){
-        //                 toast.error('Erro ao realizar o pedido!')
-        //             }else{
-        //                 throw new Error()
-        //             }
-        
-        //         // console.log(status)
-        //         } catch (error) {
-        //             console.log(error)
-        //             toast.error('Falha no sistema')
-        //         }
+       
                 
     }
     
