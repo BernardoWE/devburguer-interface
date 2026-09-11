@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 
 export const Container = styled.div`
-    background-color: #1f1f1f;
+    background-color: ${props => props.theme.mainBlack};
     width: 100%;
     height: 72px;
     padding: 0 56px;
@@ -31,18 +31,18 @@ export const Navigation = styled.nav`
         gap: 20px;
         hr{
             height: 24px;
-            border: 1px solid #625e5e;
+            border: 1px solid ${props => props.theme.darkGray};
             
         }
     }
 `
 export const HeaderLink = styled(Link)`
-    color: ${props => props.$isActive ? '#9758a6' : '#fff'};
+    color: ${props => props.$isActive ? props => props.theme.purple : props => props.theme.white};
     text-decoration: none;
     font-size: 14px;
     transition: color .3s ease;
     &:hover{
-        color: #9758a6;
+        color: ${props => props.theme.purple};
     }
 `
 export const Options = styled.div`
@@ -58,33 +58,33 @@ export const Profile = styled.div`
     gap: 12px;
     font-size: 14px;
     p{
-        color: #fff;
+        color: ${props => props.theme.white};
         line-height: 90%;
         font-weight: 300;
         span{
             font-weight: 700;
-            color: #9758a6;
+            color: ${props => props.theme.purple};
         }
     }
 `
 export const LinkContainer = styled.div`
     position: relative;
     p{
-        background-color: #FF8C05;
+        background-color: ${props => props.theme.orange};
         top: -5px;
         left: 20px;
         position: absolute;
         border-radius: 50%;
         width: 12px;
         font-size: 9px;
-        color: #fff;
+        color: ${props => props.theme.white};
         display: flex;
         align-items: center;
         justify-content: center;
     }
 `
 export const Logout = styled.button`
-    color: #ff3205;
+    color: ${props => props.theme.red};
     font-weight: 700;
     /* text-decoration: none; */
     background: transparent;

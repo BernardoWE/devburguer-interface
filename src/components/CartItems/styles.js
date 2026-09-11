@@ -6,15 +6,15 @@ export const ButtonGroup = styled.div`
     align-items: center;
     gap: 12px;
     button{
-        background-color: #9758A6;
+        background-color: ${props => props.theme.purple};
         border: none;
         width: 32px;
         height: 32px;
         border-radius: 5px;
-        color: #fff;
+        color: ${props => props.theme.white};
         transition: all .2s ease-in;
         &:hover{
-            background-color: #6f357c;
+            background-color: ${props => props.theme.secondDarkPurple};
         }
     }
 `
@@ -35,7 +35,7 @@ export const DeleteProductButton = styled.button`
 `
 export const BackButton = styled(Link)`
 
-    color: #5C2669;
+    color: ${props => props.theme.darkPurple};
     font-size: 15px;
     
 `

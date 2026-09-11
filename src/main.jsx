@@ -7,16 +7,20 @@ import { ToastContainer } from 'react-toastify'
 import AppProvider from './hooks/index.jsx'
 import { Elements } from '@stripe/react-stripe-js'
 import stripePromise from './config/stripeConfig.js'
+import { ThemeProvider } from 'styled-components'
+import { standardTheme } from './styles/themes/standard.js'
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AppProvider>
-      <Elements stripe={stripePromise}>
-        <RouterProvider router={router}/>
-      </Elements>
-      <GlobalStyles></GlobalStyles>
-      <ToastContainer autoClose={3000} theme='colored'/>
-    </AppProvider>
+    <ThemeProvider theme={standardTheme}>
+      <AppProvider>
+        <Elements stripe={stripePromise}>
+          <RouterProvider router={router}/>
+        </Elements>
+        <GlobalStyles></GlobalStyles>
+        <ToastContainer autoClose={3000} theme='colored'/>
+      </AppProvider>
+    </ThemeProvider>
   </StrictMode>,
 )
