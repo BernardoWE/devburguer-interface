@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -47,7 +47,8 @@ export const ContainerItems = styled.div`
     border-radius: 10px;
     cursor: grab;
 `
-export const CategoryButton = styled(Link)`
+export const CategoryButton = styled.button`
+border: none;
     color: ${props => props.theme.white};
         background-color: rgba(0,0,0,0.5);
         padding: 0px 15px;
