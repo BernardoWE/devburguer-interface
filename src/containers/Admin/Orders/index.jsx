@@ -47,28 +47,41 @@ export function Orders() {
     setRows(newRows)
   }, [filteredOrders])
   function handleStatus(status) {
-    if (status.id === 0){
+    if (status.id === 0) {
       setFilteredOrders(orders)
-  } else {
-    const newOrders = orders.filter((order) => order.status === status.value)
-    setFilteredOrders(newOrders)
+    } else {
+      const newOrders = orders.filter((order) => order.status === status.value)
+      setFilteredOrders(newOrders)
+    }
+    setActiveStatus(status.id)
+    console.log(status.id)
   }
-  setActiveStatus(status.id)
-  console.log(status.id)
-}
+
+  useEffect(() => {
+    if (activeStatus === 0) {
+      setFilteredOrders(orders)
+    } else {
+      const statusIndex = orderStatusOptions.findIndex(item => item.id === activeStatus)
+      const newFilteredOrders = orders.filter(order => order.status === orderStatusOptions[statusIndex].value)
+      setFilteredOrders(newFilteredOrders)
+    }
+
+  }, [orders])
+
 
 
   return (
     <>
       <Filter>
         {orderStatusOptions.map(status => (
-         
-          <FilterOption 
-          
-          key={status.id}
-          onClick={() => {
-            handleStatus(status) 
-            console.log(status.id)}}
+
+          <FilterOption
+
+            key={status.id}
+            onClick={() => {
+              handleStatus(status)
+              console.log(status.id)
+            }}
             $isActiveStatus={activeStatus === status.id}
           >{status.label}</FilterOption>
         ))}
