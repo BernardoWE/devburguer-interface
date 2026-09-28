@@ -12,17 +12,23 @@ export function Menu() {
     const [filteredProducts, setFilteredProducts] = useState([])
     const navigate = useNavigate()
     const { search} = useLocation()
-    
+    console.log('search:', search)
+
     const queryParams = new URLSearchParams(search)
+
+    const activeCategory = Number(queryParams.get('categoria')) || 0
+
+    // const queryParams = new URLSearchParams(search)
     
+    // const activeCategory = Number(queryParams.get('categoria')) || 0
     
-    const [activeCategory, setActiveCategory] = useState(()=>{
-        const categoryId = +queryParams.get('categoria')
-        if (categoryId) {
-            return categoryId
-        }
-        return 0 
-    })
+    // const [activeCategory, setActiveCategory] = useState(()=>{
+    //     const categoryId = +queryParams.get('categoria')
+    //     if (categoryId) {
+    //         return categoryId
+    //     }
+    //     return 0 
+    // })
     useEffect(() => {
         async function loadCategories() {
             const { data } = await api.get('/categories')
@@ -74,20 +80,22 @@ export function Menu() {
             <CategoryMenu>
                 {categories.map(category => (
                     <CategoryButton
+                    type="button"
                         key={category.id}
                         $isActiveCategory={category.id === activeCategory}
-                        onClick={()=> {
-                            navigate(
-                                {
-                                    pathname: '/cardapio',
-                                    search: `?categoria=${category.id}`
-                                },
-                                {
-                                    replace: true
-                                },
-                                
-                            )
-                            setActiveCategory(category.id)
+                        onClick={()=> {                            
+                             navigate(`/cardapio?categoria=${category.id}`)
+                            // navigate(
+                            //     {
+                            //         pathname: '/cardapio',
+                            //         search: `?categoria=${category.id}`
+                            //     },
+                            //     {
+                            //         replace: true
+                            //     },
+                            // dessa forma estava dando erro na url
+                            // )
+                            // setActiveCategory(category.id)
                         }}
                     >{category.name}</CategoryButton>
                 ))}
@@ -98,9 +106,7 @@ export function Menu() {
                 ))}
             </ProductsContainer>
                 <BackButton
-                onClick={()=> {
-                            navigate(-1)
-                    }}
+                to={'/'}
                 > {"<"} Voltar</BackButton>
                 
         </Container>

@@ -46,7 +46,7 @@ export const CategoryMenu = styled.div`
     gap: 50px;
     margin-top: 30px;
 `
-export const CategoryButton = styled(Link)`
+export const CategoryButton = styled.button`
     text-decoration: none;
     cursor: pointer;
     background: none;

@@ -53,6 +53,7 @@ export function CategoriesCarousel(){
 
                 <ContainerItems key={category.id} $imageUrl={category.url}>
                    <CategoryButton
+                   type='button'
                     onClick={()=> {
                             navigate(
                                 {
