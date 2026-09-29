@@ -40,9 +40,6 @@ export function CategoriesCarousel(){
             breakpoint: { max: 464, min: 0},
             items: 1
         }
-        
-
-
     }
 
     // console.log(Carousel)
@@ -51,7 +48,7 @@ export function CategoriesCarousel(){
             <Title>Categorias</Title>
             <Carousel
                 responsive={responsive}
-                removeArrowOnDeviceType={["tablet", "mobile", "smallerMobile"]}
+                removeArrowOnDeviceType={[ "mobile", "smallerMobile"]}
                 infinite={true}
                 partialVisible={false}
                 itemClass='carousel-item'

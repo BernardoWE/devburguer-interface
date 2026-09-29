@@ -39,10 +39,13 @@ export function OffersCarousel(){
             items: 3
         },
         mobile: {
-            breakpoint: { max: 690, min: 0},
+            breakpoint: { max: 690, min: 464},
             items: 2
         },
-
+        smallerMobile:{
+            breakpoint: { max: 464, min: 0},
+            items: 1
+        }
     }
     // console.log(Carousel)
     return (
@@ -50,6 +53,7 @@ export function OffersCarousel(){
             <Title>Ofertas do dia</Title>
             <Carousel
                 responsive={responsive}
+                removeArrowOnDeviceType={[ "mobile", "smallerMobile"]}
                 infinite={true}
                 partialVisible={false}
                 itemClass='carousel-item'

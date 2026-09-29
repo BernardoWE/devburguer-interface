@@ -13,7 +13,7 @@ export const Container = styled.div`
     box-shadow: rgba(0,0,0,0.35) 0px 5px 30px;
     div{
         width: 100%;
-        height: 80px;
+        height: 100px;
         display: flex;
         gap: 10px;
         flex-direction: column;
