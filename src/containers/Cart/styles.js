@@ -52,4 +52,8 @@ export const Content = styled.div`
     max-width: 1280px;
     padding: 40px;
     margin: 0 auto;
+    overflow-x: auto;
+    @media (max-width: 1000px){
+        grid-template-columns: 1fr ;
+    }
 `
