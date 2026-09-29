@@ -14,17 +14,17 @@ export const Banner = styled.div`
     h1{
         color: ${props => props.theme.darkWhite};
         font-family: 'Road Rage', sans-serif;
-        font-size: 80px;
+        font-size: clamp(60px, 9vw, 6em);
         position: absolute;
-        right: 20%;
+        right: clamp(20px, 9vw, 200em);
         top: 30%;
         text-align: center;
-        line-height: 0.7;
+        line-height: 0.8;
         
     }
     span{
         display: block;
-        font-size: 20px;
+        font-size: clamp(15px, 1.7vw, 1em);
         margin-top: 5px;
     }
 `
@@ -45,6 +45,7 @@ export const CategoryMenu = styled.div`
     justify-content: center;
     gap: 50px;
     margin-top: 30px;
+    flex-wrap:wrap;
 `
 export const CategoryButton = styled.button`
     text-decoration: none;
@@ -61,7 +62,8 @@ export const CategoryButton = styled.button`
 export const ProductsContainer = styled.div`
 
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* grid-template-columns: repeat(3, 1fr); */
     padding: 40px;
     gap: 60px;
     justify-content: center;
