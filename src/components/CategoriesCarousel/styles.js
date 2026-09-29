@@ -6,7 +6,7 @@ export const Container = styled.div`
     margin: 0 auto;
     /* display: flex; */
     .carousel-item{
-        padding-right: 40px;
+        padding-inline: 20px;
         
     }
     /* .react-multi-carousel-track {
@@ -53,7 +53,7 @@ border: none;
         background-color: rgba(0,0,0,0.5);
         padding: 0px 15px;
         border-radius: 30px;
-        font-size: 22.5px;
+        font-size: clamp(1rem, 1.2vw, 2rem);
         font-weight: 50;
         margin-top: 50px;
         text-decoration: none;
