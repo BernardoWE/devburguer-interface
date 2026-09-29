@@ -7,6 +7,7 @@ export const Container = styled.div`
     width: 100%;
     height: 72px;
     padding: 0 56px;
+    display: flex;
 `
 export const Content = styled.div`
     display: flex;
@@ -15,6 +16,7 @@ export const Content = styled.div`
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
+    gap: 10px;
 `
 
 export const Navigation = styled.nav`
@@ -34,6 +36,9 @@ export const Navigation = styled.nav`
             border: 1px solid ${props => props.theme.darkGray};
             
         }
+    }
+    @media(max-width: 390px){
+        display: none;
     }
 `
 export const HeaderLink = styled(Link)`
