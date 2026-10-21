@@ -80,7 +80,6 @@ export function Orders() {
             key={status.id}
             onClick={() => {
               handleStatus(status)
-              console.log(status.id)
             }}
             $isActiveStatus={activeStatus === status.id}
           >{status.label}</FilterOption>

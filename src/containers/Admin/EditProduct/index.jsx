@@ -60,7 +60,7 @@ export function EditProduct() {
         }
 )
 setTimeout(()=>{
-    navigate('admin/produtos')
+    navigate('/admin/produtos')
 },2000)
     }
 
